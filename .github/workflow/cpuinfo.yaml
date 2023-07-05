@@ -1,0 +1,15 @@
+name: Display information about GitHub Actions CPU architecture
+on: 
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    strategy:
+      matrix:
+        runs-on: [ubuntu-latest]
+        name: [1...5]
+    name: Display lscpu - ${{matrix.name}}
+    runs-on: ${{matrix.runs-on}}
+    steps:
+      - name: Run lscpu
+        run: lscpu
